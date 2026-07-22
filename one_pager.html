@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NJIC Ireland — National Justice Integrity Commission</title>
+    <style>
+        :root {
+            --navy: #0a1628;
+            --navy-light: #111d32;
+            --slate: #1e293b;
+            --accent: #d4a843;
+            --accent-light: #e8c76a;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --text-dark: #475569;
+            --border: #334155;
+            --white: #f8fafc;
+            --danger: #ef4444;
+            --success: #22c55e;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--navy);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+        }
+
+        nav .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        nav .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--white);
+            letter-spacing: -0.02em;
+        }
+
+        nav .logo span {
+            color: var(--accent);
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        nav .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        nav .cta-btn {
+            background: var(--accent);
+            color: var(--navy);
+            padding: 0.5rem 1.25rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+        }
+
+        nav .cta-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 160px 2rem 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            font-weight: 400;
+        }
+
+        .hero-quote {
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+            margin: 0 auto 3rem;
+            max-width: 700px;
+            text-align: left;
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--navy);
+            padding: 0.875rem 2rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212, 168, 67, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 0.875rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Section styling */
+        section {
+            padding: 80px 2rem;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin-top: 1rem;
+        }
+
+        /* The Problem */
+        .problem-section {
+            background: var(--navy-light);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .problem-result {
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin-top: 2rem;
+            color: #fca5a5;
+            font-weight: 500;
+        }
+
+        .problem-result strong {
+            color: var(--danger);
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .data-table thead {
+            background: var(--slate);
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 1rem 1.25rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .data-table td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            vertical-align: top;
+        }
+
+        .data-table tbody tr:hover {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .data-table td:first-child {
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        /* Feature grids */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: var(--navy-light);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.75rem;
+            transition: all 0.2s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .feature-card .card-label {
+            color: var(--accent);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .feature-card .card-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Is Not section */
+        .not-section {
+            background: var(--navy-light);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .not-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .not-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: rgba(239, 68, 68, 0.04);
+            border: 1px solid rgba(239, 68, 68, 0.15);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+        }
+
+        .not-item .not-icon {
+            color: var(--danger);
+            font-size: 1.25rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .not-item .not-title {
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.25rem;
+            font-size: 0.95rem;
+        }
+
+        .not-item .not-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Comparison section */
+        .comparison-section .data-table td:nth-child(2) {
+            color: var(--text-muted);
+        }
+
+        .comparison-section .data-table td:nth-child(3) {
+            color: var(--accent-light);
+        }
+
+        .comparison-note {
+            margin-top: 2rem;
+            padding: 1.5rem 2rem;
+            background: rgba(212, 168, 67, 0.06);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        .comparison-note strong {
+            color: var(--accent);
+            font-style: normal;
+        }
+
+        /* The Ask */
+        .ask-section {
+            background: var(--navy-light);
+            border-top: 1px solid var(--border);
+        }
+
+        .ask-list {
+            list-style: none;
+            margin-top: 2rem;
+            counter-reset: ask-counter;
+        }
+
+        .ask-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .ask-list li:last-child {
+            border-bottom: none;
+        }
+
+        .ask-number {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .ask-content h3 {
+            color: var(--white);
+            font-size: 1.15rem;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+        }
+
+        .ask-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Closing */
+        .closing-section {
+            padding: 100px 2rem;
+            text-align: center;
+            background: var(--navy-light);
+            border-top: 1px solid var(--border);
+        }
+
+        .closing-quote {
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            font-weight: 600;
+            color: var(--white);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.4;
+            letter-spacing: -0.01em;
+        }
+
+        .closing-quote span {
+            color: var(--accent);
+        }
+
+        .closing-meta {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .closing-meta a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .closing-meta a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+        }
+
+        footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        footer .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        footer .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            nav .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 1.5rem 60px;
+            }
+
+            section {
+                padding: 60px 1.5rem;
+            }
+
+            .data-table {
+                font-size: 0.85rem;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 0.75rem;
+            }
+
+            .ask-list li {
+                gap: 1rem;
+            }
+
+            .ask-number {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Smooth fade-in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <div class="logo">NJIC <span>Ireland</span></div>
+            <ul class="nav-links">
+                <li><a href="#problem">The Problem</a></li>
+                <li><a href="#is">What It Is</a></li>
+                <li><a href="#isnot">What It Is Not</a></li>
+                <li><a href="#bodies">Existing Bodies</a></li>
+                <li><a href="#ask">The Ask</a></li>
+            </ul>
+            <a href="#ask" class="cta-btn">Support NJIC</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="fade-in">
+            <div class="hero-badge">Open-Source Framework for Justice Reform</div>
+            <h1>National Justice <span>Integrity Commission</span></h1>
+            <p class="hero-subtitle">Ireland's missing "single pair of eyes" on justice system integrity — independent, cross-cutting, evidence-based, and complementary to existing oversight bodies.</p>
+            <div class="hero-quote">
+                "Integrity in justice is the foundation of a fair society."
+            </div>
+            <div class="hero-actions">
+                <a href="#problem" class="btn-primary">Read the Framework</a>
+                <a href="#ask" class="btn-secondary">Support the Campaign</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Problem -->
+    <section id="problem" class="problem-section">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-label">The Problem</div>
+                <h2 class="section-title">Fragmented Oversight, Systemic Blind Spots</h2>
+                <p class="section-desc">Ireland has no independent, cross-cutting body to detect integrity failures that span multiple justice agencies. Oversight exists in silos — and the gaps between them are where systemic risks fester.</p>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Agency</th>
+                        <th>Currently Overseen By</th>
+                        <th>The Gap</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>An Garda Síochána</td>
+                        <td>PCSA, GSOC / IOPO</td>
+                        <td>No cross-system pattern analysis</td>
+                    </tr>
+                    <tr>
+                        <td>Irish Prison Service</td>
+                        <td>Inspector of Prisons</td>
+                        <td>No corruption-risk benchmarking</td>
+                    </tr>
+                    <tr>
+                        <td>Courts Service</td>
+                        <td>Judicial Council</td>
+                        <td>No external transparency scoring</td>
+                    </tr>
+                    <tr>
+                        <td>Probation Service</td>
+                        <td>Internal / Ministerial</td>
+                        <td>No independent integrity monitoring</td>
+                    </tr>
+                    <tr>
+                        <td>Legal Profession</td>
+                        <td>Legal Services Regulatory Authority</td>
+                        <td>No justice-sector-wide accountability</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="problem-result">
+                <strong>Result:</strong> Corruption risks, procurement irregularities, and systemic misconduct patterns that span multiple agencies go undetected until they become crises.
+            </div>
+        </div>
+    </section>
+
+    <!-- What It Is -->
+    <section id="is">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-label">What the NJIC Is</div>
+                <h2 class="section-title">A Cross-System Integrity Commission</h2>
+                <p class="section-desc">The NJIC is designed to fill the gaps between existing oversight bodies — not replace them. It provides the connective tissue that turns fragmented data into systemic insight.</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="card-label">01 / Independence</div>
+                    <div class="card-title">A Statutory or Statutory-Style Commission</div>
+                    <div class="card-text">Independent of the agencies it monitors; funded through the Oireachtas or EU anti-corruption frameworks, with operational autonomy guaranteed.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-label">02 / Scope</div>
+                    <div class="card-title">Cross-System Coverage</div>
+                    <div class="card-text">Covers An Garda Síochána, Irish Prison Service, Courts Service, Probation Service, and the legal profession — as a single, interconnected ecosystem.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-label">03 / Focus</div>
+                    <div class="card-title">Integrity-Focused Benchmarking</div>
+                    <div class="card-text">Benchmarks transparency, ethical conduct, accountability, and corruption risk — not day-to-day operational management or performance metrics.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-label">04 / Method</div>
+                    <div class="card-title">Evidence-Based & Peer-Reviewed</div>
+                    <div class="card-text">Publishes annual integrity scores, risk heatmaps, and policy recommendations derived from open data, FOI responses, and validated official sources.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-label">05 / Impact</div>
+                    <div class="card-title">Advocacy-Enabling</div>
+                    <div class="card-text">Provides researchers, journalists, TDs, and civil society with structured, citable datasets to support evidence-based reform campaigns.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-label">06 / Protection</div>
+                    <div class="card-title">Whistleblower-Protective</div>
+                    <div class="card-text">Maintains secure, anonymised channels for reporting cross-cutting integrity concerns without storing identities or attribution data.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What It Is Not -->
+    <section id="isnot" class="not-section">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-label">What the NJIC Is Not</div>
+                <h2 class="section-title">Clear Boundaries, Defined Limits</h2>
+                <p class="section-desc">The NJIC is not a law enforcement body, a court, or an operational manager. It is an integrity monitor — and its power lies in evidence, not enforcement.</p>
+            </div>
+
+            <div class="not-grid">
+                <div class="not-item">
+                    <div class="not-icon">✕</div>
+                    <div>
+                        <div class="not-title">A Police Force</div>
+                        <div class="not-desc">It has no powers of arrest, search, or seizure. It does not conduct criminal investigations.</div>
+                    </div>
+                </div>
+                <div class="not-item">
+                    <div class="not-icon">✕</div>
+                    <div>
+                        <div class="not-title">A Court or Tribunal</div>
+                        <div class="not-desc">It does not determine guilt, impose sanctions, or adjudicate individual cases.</div>
+                    </div>
+                </div>
+                <div class="not-item">
+                    <div class="not-icon">✕</div>
+                    <div>
+                        <div class="not-title">An Operational Manager</div>
+                        <div class="not-desc">It does not set policing priorities, prison budgets, court schedules, or probation targets.</div>
+                    </div>
+                </div>
+                <div class="not-item">
+                    <div class="not-icon">✕</div>
+                    <div>
+                        <div class="not-title">A Replacement for Existing Bodies</div>
+                        <div class="not-desc">It does not duplicate the PCSA, GSOC/IOPO, the Inspector of Prisons, or the Judicial Council.</div>
+                    </div>
+                </div>
+                <div class="not-item">
+                    <div class="not-icon">✕</div>
+                    <div>
+                        <div class="not-title">A Prosecutorial Body</div>
+                        <div class="not-desc">It does not bring criminal charges, disciplinary proceedings, or professional sanctions.</div>
+                    </div>
+                </div>
+                <div class="not-item">
+                    <div class="not-icon">✕</div>
+                    <div>
+                        <div class="not-title">A Leaks Platform</div>
+                        <div class="not-desc">It does not publish unverified allegations. All data is sourced, documented, and subject to provenance logging.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Relationship to Existing Bodies -->
+    <section id="bodies" class="comparison-section">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-label">Existing Bodies</div>
+                <h2 class="section-title">Complementary, Not Competitive</h2>
+                <p class="section-desc">The NJIC uses existing oversight bodies' published outputs as inputs for its cross-system analysis. It fills the gap between single-agency oversight and whole-system integrity.</p>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Existing Body</th>
+                        <th>What It Does</th>
+                        <th>What NJIC Adds</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PCSA</td>
+                        <td>Garda performance oversight, inspections, community safety</td>
+                        <td>Cross-system integrity benchmarking; corruption-risk analysis spanning Garda-Prison-Court nexus</td>
+                    </tr>
+                    <tr>
+                        <td>GSOC / IOPO</td>
+                        <td>Investigates individual Garda complaints</td>
+                        <td>Identifies systemic misconduct patterns across agencies; complements but does not investigate</td>
+                    </tr>
+                    <tr>
+                        <td>Inspector of Prisons</td>
+                        <td>Prison conditions, human rights compliance</td>
+                        <td>Prison-specific integrity scoring: corruption, procurement, staff conduct</td>
+                    </tr>
+                    <tr>
+                        <td>Judicial Council</td>
+                        <td>Judicial conduct, appointments, education</td>
+                        <td>External transparency index for judicial accountability</td>
+                    </tr>
+                    <tr>
+                        <td>C&AG</td>
+                        <td>Public financial audit</td>
+                        <td>Sector-specific procurement risk mapping</td>
+                    </tr>
+                    <tr>
+                        <td>DPP</td>
+                        <td>Prosecution decisions</td>
+                        <td>Prosecution transparency metrics: consistency, disclosure compliance</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="comparison-note">
+                <strong>Key Principle:</strong> The NJIC relies on PCSA outputs as inputs for its Garda scoring. Conversely, the NJIC can flag systemic integrity risks that the PCSA's narrower operational focus might miss. The relationship is one of information-sharing and methodological coordination — not duplication.
+            </div>
+        </div>
+    </section>
+
+    <!-- The Ask -->
+    <section id="ask" class="ask-section">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-label">The Ask</div>
+                <h2 class="section-title">Establish the NJIC</h2>
+                <p class="section-desc">A statutory National Justice Integrity Commission — or a formally recognised independent framework — to monitor, report, recommend, and protect across Ireland's entire justice ecosystem.</p>
+            </div>
+
+            <ol class="ask-list">
+                <li>
+                    <div class="ask-number">1</div>
+                    <div class="ask-content">
+                        <h3>Monitor</h3>
+                        <p>Assess integrity risks across all justice agencies using a standardised 5-dimension methodology: Operational Effectiveness, Public Trust, Transparency, Ethical Conduct, and Resource Efficiency.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="ask-number">2</div>
+                    <div class="ask-content">
+                        <h3>Report</h3>
+                        <p>Publish annual integrity reports to the Oireachtas and the public with scored, benchmarked, peer-reviewed findings — transparent, citable, and independently verified.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="ask-number">3</div>
+                    <div class="ask-content">
+                        <h3>Recommend</h3>
+                        <p>Deliver evidence-based reforms to legislation, regulation, and agency practice — informed by EU best practice and international anti-corruption standards.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="ask-number">4</div>
+                    <div class="ask-content">
+                        <h3>Protect</h3>
+                        <p>Safeguard whistleblowers who expose cross-system integrity failures through secure, anonymised channels that never store identities or attribution data.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#" class="btn-primary">Join the Campaign</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Closing -->
+    <section class="closing-section">
+        <div class="section-inner">
+            <p class="closing-quote">The NJIC is Ireland's missing <span>"single pair of eyes"</span> on justice system integrity — independent, cross-cutting, evidence-based, and complementary to existing operational oversight bodies.</p>
+            <p class="closing-meta">
+                For the full methodology, legal framework, and data availability matrix, see the <a href="#">NJIC Ireland open-source repository</a>.<br>
+                Licensed under MIT. Contributions welcome.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">Methodology</a>
+            <a href="#">Data Availability</a>
+            <a href="#">DPIA Framework</a>
+            <a href="#">Risk Register</a>
+            <a href="#">GitHub</a>
+        </div>
+        <p>© 2026 NJIC Ireland Contributors. Open-source framework for transparency, accountability, and anti-corruption.</p>
+    </footer>
+
+</body>
+</html>
