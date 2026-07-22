@@ -4,6 +4,9 @@
 
 ---
 
+- Main - https://njic-ireland-one-pager.pages.dev/
+- v1 - https://78eb95bf.njic-ireland-one-pager.pages.dev/
+
 ### THE PROBLEM
 
 Ireland has no independent, cross-cutting body to detect systemic integrity failures across its justice system. Oversight is fragmented:
